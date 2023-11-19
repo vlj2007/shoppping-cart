@@ -3,6 +3,7 @@ package pro.sky.shoppingcart.service;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 import pro.sky.shoppingcart.api.IShoppingCart;
+import pro.sky.shoppingcart.exception.BadRequestException;
 
 import java.util.*;
 
@@ -28,7 +29,14 @@ public class SShoppingCart implements IShoppingCart {
 
     @Override
     public void add(ArrayList<Integer> id) {
-        shoppingCartList.addAll(id);
+        try{
+            shoppingCartList.addAll(id);
+        } catch (Exception e){
+            throw new BadRequestException();
+        }
+
+
+
     }
 
     @Override
